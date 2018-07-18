@@ -5,7 +5,7 @@ using Models;
 
 namespace BL
 {
-    internal class AutoMapperConfigurator
+    public class AutoMapperService
     {
         private static bool _isConfigured;
 

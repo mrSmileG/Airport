@@ -7,15 +7,14 @@ namespace Models
 {
     public abstract class Person : BaseModel
     {
-        [Required(ErrorMessage = "Name is required")]
-        [MinLength(3, ErrorMessage = "Name length must be greater or equal then 3 symbols")]
+        [StringLength(50, ErrorMessage = "Incorrect Name string length. It should be between 2 and 50 symbols ", MinimumLength = 2)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Surname is required")]
-        [MinLength(3, ErrorMessage = "Surname length must be greater or equal then 3 symbols")]
+        [StringLength(50, ErrorMessage = "Incorrect Surname string length. It should be between 2 and 50 symbols ", MinimumLength = 2)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Surname is required")]
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Birth is required")]
         public DateTime Birth { get; set; }
     }
 }

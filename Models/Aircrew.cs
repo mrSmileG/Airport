@@ -10,7 +10,7 @@ namespace Models
         [Required(ErrorMessage = "Pilot is required")]
         public Pilot Pilot { get; set; }
 
-        [Required(ErrorMessage = "Stewards list is required")]
+        [Required(ErrorMessage = "Stewards are required")]
         public IEnumerable<Steward> Stewards { get; set; }
     }
 }

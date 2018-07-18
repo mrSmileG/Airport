@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Models
@@ -9,5 +10,10 @@ namespace Models
     {
         [Required(ErrorMessage = "Price is required")]
         public decimal Price { get; set; }
+
+        public int FlightId { get; set; }
+
+        [ForeignKey("FlightId")]
+        public Flight Flight { get; set; }
     }
 }

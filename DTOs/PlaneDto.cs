@@ -4,8 +4,10 @@ using System.Text;
 
 namespace DTOs
 {
-    public class PlaneDto : BaseDto
+    public class PlaneDto
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public PlaneTypeDto Type { get; set; }

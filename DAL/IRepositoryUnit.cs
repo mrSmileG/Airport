@@ -22,5 +22,7 @@ namespace DAL
         IRepository<Steward> StewardRepository { get; }
 
         IRepository<Ticket> TicketRepository { get; }
+
+        void Save();
     }
 }

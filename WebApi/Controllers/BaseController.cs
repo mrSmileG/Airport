@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    public abstract class BaseController<TEntityDto> : Controller where TEntityDto : BaseDto, new()
+    public abstract class BaseController<TEntityDto> : Controller where TEntityDto : class , new()
     {
         protected readonly IService<TEntityDto> _service;
 
@@ -19,33 +19,33 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public virtual IEnumerable<TEntityDto> GetList()
+        public virtual async Task<IEnumerable<TEntityDto>> GetListAsync()
         {
-            return _service.GetList();
+            return await _service.GetListAsync();
         }
 
         [HttpGet("{id}")]
-        public virtual TEntityDto Get(Guid id)
+        public virtual async Task<TEntityDto> GetAsync(int id)
         {
-            return _service.Get(id);
+            return await _service.GetAsync(id);
         }
 
         [HttpPost]
-        public virtual void Post([FromBody]TEntityDto item)
+        public virtual async Task PostAsync([FromBody]TEntityDto item)
         {
-            _service.Create(item);
+            await _service.CreateAsync(item);
         }
 
         [HttpPut("{id}")]
-        public virtual void Put(int id, [FromBody]TEntityDto item)
+        public virtual async Task PutAsync(int id, [FromBody]TEntityDto item)
         {
-            _service.Update(item);
+            await _service.UpdateAsync(item);
         }
 
         [HttpDelete("{id}")]
-        public virtual void Delete(Guid id)
+        public virtual async Task DeleteAsync(int id)
         {
-            _service.Delete(id);
+            await _service.DeleteAsync(id);
         }
     }
 }
