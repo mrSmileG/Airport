@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using DTOs;
 
 namespace BL.Services
 {
-    public interface IService<TEntityDto> where TEntityDto : BaseDto, new()
+    public interface IService<TEntityDto> where TEntityDto : class , new()
     {
-        TEntityDto Create(TEntityDto item);
+        Task<TEntityDto> CreateAsync(TEntityDto item);
 
-        void Delete(Guid id);
+        Task DeleteAsync(int id);
 
-        TEntityDto Get(Guid id);
+        Task<TEntityDto> GetAsync(int id);
 
-        IEnumerable<TEntityDto> GetList();
+        Task<IEnumerable<TEntityDto>> GetListAsync();
 
-        void Update(TEntityDto item);
+        Task UpdateAsync(TEntityDto item);
     }
 }

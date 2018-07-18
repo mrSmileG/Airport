@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using AutoMapper;
 using DAL;
 using DTOs;
@@ -9,53 +10,50 @@ using Models;
 namespace BL.Services
 {
     public abstract class BaseService<TEntityDto, TEntity> : IService<TEntityDto>
-        where TEntityDto : BaseDto, new()
+        where TEntityDto : class , new()
         where TEntity : BaseModel, new()
     {
         protected IRepository<TEntity> _repository;
 
         static BaseService()
         {
-            AutoMapperConfigurator.Configure();
+            AutoMapperService.Configure();
         }
 
-        public virtual TEntityDto Create(TEntityDto item)
+        public virtual async Task<TEntityDto> CreateAsync(TEntityDto item)
         {
             var convertedItem = Mapper.Map<TEntityDto, TEntity>(item);
-            var entity = _repository.Create(convertedItem);
-            _repository.Save();
-
+            var entity = await _repository.CreateAsync(convertedItem);
             var dto = Mapper.Map<TEntity, TEntityDto>(entity);
+
             return dto;
         }
 
-        public virtual void Delete(Guid id)
+        public virtual async Task DeleteAsync(int id)
         {
-            _repository.Delete(id);
-            _repository.Save();
+            await _repository.DeleteAsync(id);
         }
 
-        public virtual TEntityDto Get(Guid id)
+        public virtual async Task<TEntityDto> GetAsync(int id)
         {
-            var item = _repository.Get(id);
+            var item = await _repository.GetAsync(id);
             var dto = Mapper.Map<TEntity, TEntityDto>(item);
 
             return dto;
         }
 
-        public virtual IEnumerable<TEntityDto> GetList()
+        public virtual async Task<IEnumerable<TEntityDto>> GetListAsync()
         {
-            var items = _repository.GetList();
+            var items = await _repository.GetListAsync();
             var dtos = Mapper.Map<IEnumerable<TEntity>, IEnumerable<TEntityDto>>(items);
 
             return dtos;
         }
 
-        public virtual void Update(TEntityDto item)
+        public virtual async Task UpdateAsync(TEntityDto item)
         {
             var convertedItem = Mapper.Map<TEntityDto, TEntity>(item);
-            _repository.Update(convertedItem);
-            _repository.Save();
+            await _repository.UpdateAsync(convertedItem);
         }
     }
 }

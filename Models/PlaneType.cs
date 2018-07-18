@@ -7,11 +7,11 @@ namespace Models
 {
     public class PlaneType : BaseModel
     {
-        [Required(ErrorMessage = "Model is required")]
-        [MinLength(2, ErrorMessage = "Model length must be greater or equal then 2 symbols")]
+        [StringLength(50, ErrorMessage = "Incorrect Model string length. It should be between 2 and 50 symbols ", MinimumLength = 2)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Model is required")]
         public string Model { get; set; }
 
-        [Required(ErrorMessage = "Places is required")]
+        [Required(ErrorMessage = "Places count is required")]
         public int Places { get; set; }
 
         [Required(ErrorMessage = "Carrying is required")]

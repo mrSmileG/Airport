@@ -7,15 +7,15 @@ namespace Models
 {
     public class Flight : BaseModel
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Departure Place is required")]
-        [MinLength(3, ErrorMessage = "Departure Place length must be greater or equal then 3 symbols")]
+        [StringLength(50, ErrorMessage = "Incorrect Departure place string length. It should be between 3 and 50 symbols ", MinimumLength = 3)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Departure place is required")]
         public string DeparturePlace { get; set; }
 
         [Required(ErrorMessage = "Departure time is required")]
         public DateTime DepartureTime { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Arrival Place is required")]
-        [MinLength(3, ErrorMessage = "Arrival Place length must be greater or equal then 3 symbols")]
+        [StringLength(50, ErrorMessage = "Incorrect Arrival place string length. It should be between 3 and 50 symbols ", MinimumLength = 3)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Arrival place is required")]
         public string ArrivalPlace { get; set; }
 
         [Required(ErrorMessage = "Arrival time is required")]

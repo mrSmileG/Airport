@@ -4,8 +4,10 @@ using System.Text;
 
 namespace DTOs
 {
-    public class FlightDto : BaseDto
+    public class FlightDto
     {
+        public int Id { get; set; }
+
         public string DeparturePlace { get; set; }
 
         public DateTime DepartureTime { get; set; }
@@ -14,6 +16,6 @@ namespace DTOs
 
         public DateTime ArrivalTime { get; set; }
 
-        public IEnumerable<TicketDto> Tickets { get; set; }
+        public virtual IEnumerable<TicketDto> Tickets { get; set; }
     }
 }

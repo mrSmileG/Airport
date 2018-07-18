@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
     public interface IRepository<TEntity> where TEntity : BaseModel, new()
     {
-        TEntity Create(TEntity item);
+        Task<TEntity> CreateAsync(TEntity item);
 
-        void Delete(Guid id);
+        Task DeleteAsync(int id);
 
-        TEntity Get(Guid id);
+        Task<TEntity> GetAsync(int id);
 
-        IEnumerable<TEntity> GetList();
+        Task<IEnumerable<TEntity>> GetListAsync();
 
-        void Update(TEntity item);
-
-        void Save();
+        Task UpdateAsync(TEntity item);
     }
 }

@@ -4,9 +4,11 @@ using System.Text;
 
 namespace DTOs
 {
-    public class DepartureDto : BaseDto
+    public class DepartureDto
     {
-        public Guid FlightId { get; set; }
+        public int Id { get; set; }
+
+        public FlightDto Flight { get; set; }
 
         public DateTime Date { get; set; }
 
