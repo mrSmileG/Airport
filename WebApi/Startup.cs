@@ -36,6 +36,7 @@ namespace WebApi
             services.AddScoped<IService<FlightDto>, FlightService>();
             services.AddScoped<IService<DepartureDto>, DepartureService>();
             services.AddScoped<IService<TicketDto>, TicketService>();
+            services.AddScoped<IServiceRemote, AircrewService>();
 
             services.AddScoped<IRepositoryUnit, RepositoryUnit>();
 
